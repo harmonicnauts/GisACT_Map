@@ -1,3 +1,5 @@
+"use client"
+
 import { LatLngExpression } from "leaflet";
 import Image from "next/image";
 import dynamic from 'next/dynamic';
@@ -7,8 +9,6 @@ const MapClient = dynamic(() => import("../components/Map"), {
 })
 
 export default function Home() {
-  const position:LatLngExpression = [51.505, -0.09]
-
   return (
     <main>
       <MapClient />
