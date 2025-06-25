@@ -8,6 +8,8 @@ const MapClient = dynamic(() => import("../components/Map"), {
   ssr: false
 })
 
+
+
 export default function Home() {
   return (
     <main>
