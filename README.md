@@ -1,7 +1,7 @@
 Buatkan platform sederhana dengan fitur fitur gambar dibawah ini:
 
 Fitur:
-Search Lokasi
+Search Lokasi // On Going(Still only Id)
 Menampilkan data yang sudah disediakan ke map (data dapat diakses via link google drive dibawah). (Show and Hide) // On-going
 Mengganti Base Map (minimum 2 style. Contoh: Light dan Dark) // Done
 Legend untuk data yang sedang ditampilkan.
