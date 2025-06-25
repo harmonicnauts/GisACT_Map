@@ -1,23 +1,49 @@
 "use client";
 
 import { LatLngExpression, Layer } from "leaflet";
-import { MapContainer, TileLayer, GeoJSON, LayersControl } from "react-leaflet";
+import { MapContainer, TileLayer, GeoJSON, LayersControl, useMap } from "react-leaflet";
 import { FaMoon } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
 import "leaflet/dist/leaflet.css";
 import geoJsonData from "../../data/dummy-data-for-test.json"
 import { GeoJSONFeatureCollection } from "@/types/GeoJson";
 import { Feature } from "geojson";
-import { useState } from "react";
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import "leaflet-search";
+import "leaflet-search/dist/leaflet-search.min.css";
+// import Image from "next/image";
 
 const light = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const dark = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
 
 
+function SearchControl({ geoJsonLayer }: { geoJsonLayer: any }) {
+    const map = useMap();
+
+    useEffect(() => {
+        if (!map || !geoJsonLayer.current) return 
+
+         const searchControl = new (window as any).L.Control.Search({
+            layer: geoJsonLayer.current,
+            propertyName: "Id",
+            marker: false,
+            moveToLocation: function (latlng: LatLngExpression, _title:string, map: L.Map) {
+                map.setView(latlng, 18);
+            },
+        });
+
+        map.addControl(searchControl);
+
+        return () => {map.removeControl(searchControl)}
+    }, [map, geoJsonLayer])
+    return null
+}
+
 
 export default function MapClient() {
   const [mapStyle, setMapStyle] = useState<'light' | 'dark'>('light');
+
+  const geoJsonRef = useRef<any>(null);
 
 
   function onEachFeature(feature:Feature, layer: Layer) {
@@ -66,8 +92,9 @@ export default function MapClient() {
             <GeoJSON 
             onEachFeature={onEachFeature} 
             data={geoJsonData as GeoJSONFeatureCollection}
-
+            ref={geoJsonRef}
             />
+            <SearchControl geoJsonLayer={geoJsonRef} />
         </MapContainer>
         <button
             onClick={toggleMapStyle}
