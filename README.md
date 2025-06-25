@@ -2,19 +2,19 @@ Buatkan platform sederhana dengan fitur fitur gambar dibawah ini:
 
 Fitur:
 Search Lokasi
-Menampilkan data yang sudah disediakan ke map (data dapat diakses via link google drive dibawah). (Show and Hide)
-Mengganti Base Map (minimum 2 style. Contoh: Light dan Dark)
+Menampilkan data yang sudah disediakan ke map (data dapat diakses via link google drive dibawah). (Show and Hide) // On-going
+Mengganti Base Map (minimum 2 style. Contoh: Light dan Dark) // Done
 Legend untuk data yang sedang ditampilkan.
-Navigasi (Zoom In / Out)
-Menampilkan informasi dari bangunan yang dipilih (opsional).
+Navigasi (Zoom In / Out) // Done
+Menampilkan informasi dari bangunan yang dipilih (opsional). // Done
 
 Ketentuan:
-Gunakan Framework NextJS Typescripts (required)
+Gunakan Framework NextJS Typescripts (required) // Done
 Tampilan responsive (opsional)
-Fitur yang tersedia berjalan dengan baik (required)
+Fitur yang tersedia berjalan dengan baik (required) // On Going
 Gunakan state management react redux / state management lainnya (opsional)
-Demo / Preview / Recording App (opsional)
-Public Github Repository (required) (\*dibutuhkan untuk pengecekan kode)
+Demo / Preview / Recording App (opsional) // On Going
+Public Github Repository (required) (\*dibutuhkan untuk pengecekan kode) // Done (Still privated)
 
 Penentuan point:
 Peserta diwajibkan untuk menyelesaikan test berdasarkan ketentuan yang sudah ditentukan (required only)
