@@ -1,9 +1,6 @@
 "use client"
-
-import { LatLngExpression } from "leaflet";
-import Image from "next/image";
 import dynamic from 'next/dynamic';
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+
 const MapClient = dynamic(() => import("../components/Map"), {
   ssr: false
 })
@@ -13,8 +10,8 @@ const MapClient = dynamic(() => import("../components/Map"), {
 export default function Home() {
   return (
     <main>
+      <div>fjkdsalfjska</div>
       <MapClient />
     </main>
-
   );
 }
