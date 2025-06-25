@@ -1,13 +1,13 @@
 "use client";
 
-import { LatLngExpression, Layer } from "leaflet";
+import { LatLngExpression, Layer, LeafletMouseEvent, PathOptions } from "leaflet";
 import { MapContainer, TileLayer, GeoJSON, LayersControl, useMap } from "react-leaflet";
 import { FaMoon } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
 import "leaflet/dist/leaflet.css";
 import geoJsonData from "../../data/dummy-data-for-test.json"
 import { GeoJSONFeatureCollection } from "@/types/GeoJson";
-import { Feature } from "geojson";
+import { Feature, GeoJsonProperties, Geometry } from "geojson";
 import { useEffect, useRef, useState } from "react";
 import "leaflet-search";
 import "leaflet-search/dist/leaflet-search.min.css";
@@ -42,18 +42,40 @@ function SearchControl({ geoJsonLayer }: { geoJsonLayer: any }) {
 
 export default function MapClient() {
   const [mapStyle, setMapStyle] = useState<'light' | 'dark'>('light');
+  const [selectedBuilding, setSelectedBuilding] = useState<number | null>(null)
 
   const geoJsonRef = useRef<any>(null);
 
 
   function onEachFeature(feature:Feature, layer: Layer) {
-
     if (feature.properties) {
         const popupContent = Object.entries(feature.properties)
         .map(([key, value]) => `<b>${key}:</b> ${value}`)
         .join("<br/>");
         layer.bindPopup(popupContent)
-        }
+    }
+
+    const handleFeatureClick = (e: LeafletMouseEvent) => {
+        if (!geoJsonRef.current) return;
+
+        geoJsonRef.current.resetStyle();
+        const layer = e.target;
+        layer.setStyle({ color: "red" });
+    };
+
+    layer.on("click", (e: L.LeafletMouseEvent) => {
+        if (!geoJsonRef.current) return;
+
+        geoJsonRef.current.resetStyle(); 
+        const clickedLayer = e.target;
+        clickedLayer.setStyle({ color: "#3388ff" });
+    });
+
+    layer.on("popupclose", () => {
+        if (!geoJsonRef.current) return;
+        geoJsonRef.current.setStyle({ color: "#3388ff" });
+    });
+
     }
 
     const toggleMapStyle = () => {
@@ -62,6 +84,7 @@ export default function MapClient() {
 
 
   const position: LatLngExpression = [-6.981560, 107.594185];
+
   return (
     <div style={{ position: "relative" }}>
         <MapContainer
@@ -90,7 +113,9 @@ export default function MapClient() {
                 url={mapStyle === 'light' ? light : dark}
                 /> */}
             <GeoJSON 
+            key={selectedBuilding}
             onEachFeature={onEachFeature} 
+            style={{ color: "#3388ff", weight: 2, fillOpacity: 0.6 }}
             data={geoJsonData as GeoJSONFeatureCollection}
             ref={geoJsonRef}
             />
