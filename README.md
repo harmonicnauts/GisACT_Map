@@ -2,14 +2,14 @@
 
 # 🧪 What’s Cooking (Features)
 
-| Fitur                               | Status               | Catatan                                     |
-| ----------------------------------- | -------------------- | ------------------------------------------- |
-| 🔍 Search Lokasi by ID              | 🛠️ On-going          | Masih tahap dasar, belum fully dynamic      |
-| 📍 Render data ke map               | 🛠️ On-going          | Sumber data dari Google Drive               |
-| 🌓 Base map switch (Light/Dark)     | ✅ Done              | UI toggle ready, bisa ditambah mode lainnya |
-| 🧭 Basic Map Controls (Zoom in/out) | ✅ Done              | Menggunakan default control dari lib        |
-| 🖼️ Legend Display                   | 🔜 To-do             | Belum dipoles, tapi desain sudah di kepala  |
-| 🏢 Building Info on Click           | ✅ Optional but done | Tooltip / modal muncul sesuai bangunan      |
+| Fitur                            | Status               |
+| -------------------------------- | -------------------- |
+| Search Lokasi by ID              | 🛠️ On-going          |
+| Render data ke map               | 🛠️ On-going          |
+| Base map switch (Light/Dark)     | ✅ Done              |
+| Basic Map Controls (Zoom in/out) | ✅ Done              |
+| Legend Display                   | 🔜 To-do             |
+| Building Info on Click           | ✅ Optional but done |
 
 # ⚙️ Tech Stack & Requirements
 
