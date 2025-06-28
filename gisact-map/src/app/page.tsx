@@ -1,4 +1,5 @@
 "use client"
+import TopBar from '@/components/TopBar';
 import dynamic from 'next/dynamic';
 
 const MapClient = dynamic(() => import("../components/Map"), {
@@ -10,7 +11,7 @@ const MapClient = dynamic(() => import("../components/Map"), {
 export default function Home() {
   return (
     <main>
-      <div>fjkdsalfjska</div>
+      <TopBar />
       <MapClient />
     </main>
   );
