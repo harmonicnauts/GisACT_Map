@@ -43,6 +43,7 @@ function SearchControl({ geoJsonLayer }: { geoJsonLayer: any }) {
 export default function MapClient() {
   const [mapStyle, setMapStyle] = useState<'light' | 'dark'>('light');
   const [selectedBuilding, setSelectedBuilding] = useState<number | null>(null)
+  const [showGeoJson, setShowGeoJson] = useState(true)
 
   const geoJsonRef = useRef<any>(null);
 
@@ -112,35 +113,34 @@ export default function MapClient() {
                 attribution="&copy; OpenStreetMap contributors"
                 url={mapStyle === 'light' ? light : dark}
                 /> */}
-            <GeoJSON 
-            key={selectedBuilding}
-            onEachFeature={onEachFeature} 
-            style={{ color: "#3388ff", weight: 2, fillOpacity: 0.6 }}
-            data={geoJsonData as GeoJSONFeatureCollection}
-            ref={geoJsonRef}
+            {
+                showGeoJson && <GeoJSON 
+                key={selectedBuilding}
+                onEachFeature={onEachFeature} 
+                style={{ color: "#3388ff", weight: 2, fillOpacity: 0.6 }}
+                data={geoJsonData as GeoJSONFeatureCollection}
+                ref={geoJsonRef}
             />
+            }
             <SearchControl geoJsonLayer={geoJsonRef} />
         </MapContainer>
         <button
             onClick={toggleMapStyle}
-            style={{
-            position: "absolute",
-            top: "1rem",
-            right: "1rem",
-            backgroundColor: "white",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            padding: "8px",
-            cursor: "pointer",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-            zIndex: 1000
-            }}
+            className="absolute top-4 right-4 z-[1000] bg-white border border-gray-300 rounded-lg p-2 cursor-pointer shadow-md hover:bg-gray-100 transition-colors"
             title="Toggle Map Style"
-        >
+            >
             {
-                mapStyle === "dark" ? <IoIosSunny color="#000" width={24} height={24}/> : <FaMoon color="#000" width={24} height={24}/>
+                mapStyle === "dark" ? <IoIosSunny className="w-5 h-5 text-black" /> : <FaMoon className="w-5 h-5 text-black" />
             }
-      </button>
+        </button>
+        
+        <button
+            onClick={() => setShowGeoJson(prev => !prev)}
+            className="absolute top-4 right-20 z-[1000] bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm shadow-md  cursor-pointer text-black hover:bg-gray-100 transition-colors"
+            title="Toggle Layer"
+            >
+            {showGeoJson ? "Hide Layer" : "Show Layer"}
+        </button>
 
     </div>
   );
