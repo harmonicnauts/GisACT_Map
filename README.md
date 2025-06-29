@@ -1,6 +1,6 @@
-# 🌐 GIS Mapping Platform – Frontend Dev Test
+# GIS Mapping Platform – Frontend Dev Test
 
-# 🧪 What’s Cooking (Features)
+# Features
 
 | Fitur                            | Status               |
 | -------------------------------- | -------------------- |
@@ -11,12 +11,12 @@
 | Legend Display                   | 🔜 To-do             |
 | Building Info on Click           | ✅ Optional but done |
 
-# ⚙️ Tech Stack & Requirements
+# Tech Stack & Requirements
 
-Minimal requirements yang (mostly) sudah terpenuhi:
+Minimal requirements:
 
-- Next.js + TypeScript (core framework)
+- Next.js + TypeScript
 - Optional: Redux / State management (masih dipertimbangkan)
 - Responsive layout (bonus feature, belum prioritas)
 - Optional demo / preview (masih in-progress)
-- GitHub Repo (✅ sudah dibuat, masih private)
+- GitHub Repo (sudah dibuat, masih private)
