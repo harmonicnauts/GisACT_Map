@@ -11,7 +11,7 @@ const MapClient = dynamic(() => import("../components/Map"), {
 export default function Home() {
   return (
     <main>
-      <TopBar />
+      {/* <TopBar /> */}
       <MapClient />
     </main>
   );

@@ -48,12 +48,18 @@ export default function MapClient() {
   const geoJsonRef = useRef<any>(null);
 
 
-  function onEachFeature(feature:Feature, layer: Layer) {
+function onEachFeature(feature: Feature, layer: Layer) {
     if (feature.properties) {
-        const popupContent = Object.entries(feature.properties)
-        .map(([key, value]) => `<b>${key}:</b> ${value}`)
-        .join("<br/>");
-        layer.bindPopup(popupContent)
+        const popupRows = Object.entries(feature.properties)
+        .map(
+            ([key, value]) =>
+            `<tr><td style={ border-bottom: solid 1px black;}>${key}</td><td>${value}</td></tr>`
+        )
+        .join("");
+
+        const popupContent = `<table>${popupRows}</table>`;
+
+        layer.bindPopup(popupContent);
     }
 
     const handleFeatureClick = (e: LeafletMouseEvent) => {
@@ -141,6 +147,14 @@ export default function MapClient() {
             >
             {showGeoJson ? "Hide Layer" : "Show Layer"}
         </button>
+
+        <div className="absolute bottom-4 right-4 z-[1000] bg-white border border-gray-300 rounded-lg p-4 shadow-md text-black text-sm space-y-2">
+            <h4 className="font-semibold mb-1">Legend</h4>
+            <div className="flex items-center space-x-2">
+                <div className="w-4 h-4 bg-[#3388ff] border border-black" />
+                <span>Area Sampah / RT</span>
+            </div>
+        </div>
 
     </div>
   );
